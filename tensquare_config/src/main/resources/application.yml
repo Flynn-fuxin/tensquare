@@ -1,0 +1,12 @@
+server:
+  #默认配置中心的端口是8888
+  port: 12000
+spring:
+  application:
+    name: tensquare-config #服务名
+  cloud:
+    config:
+      server:
+        #Git远程仓库
+        git:
+          uri: https://github.com/Flynn-fuxin/tensquare.git

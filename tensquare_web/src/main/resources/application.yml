@@ -6,14 +6,15 @@ spring:
 eureka:
   client:
     serviceUrl: #Eureka客户端与Eureka服务端进行交互的地址
-      defaultZone: http://localhost:8761/eureka/
+#      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/,http://localhost:8762/eureka/,http://localhost:8763/eureka/
   instance:
     prefer-ip-address: true
 zuul:
   #添加主机的头信息
   add-host-header: true
   #敏感词设置为null
-  sensitive-headers:
+  sensitive-headers: "Authorization"
   #路由定义
   routes:
     #可以随便写，在zuul上面唯一即可；当这里的值 = service-id时，service-id可以不写。

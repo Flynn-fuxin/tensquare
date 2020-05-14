@@ -40,15 +40,20 @@ public class WebFilter extends ZuulFilter {
         //获取Request对象
         HttpServletRequest request = requestContext.getRequest();
         //获取授权的header信息
-        String authorizationHeader = request.getHeader("Authorization");
+        String authorizationHeader = request.getHeader("JwtAuthorization");
+        String authorizationHeader2 = request.getHeader("Authorization");
+        System.out.println("JwtAuthorization："+authorizationHeader);
+        System.out.println("Authorization："+authorizationHeader2);
         //判断是否有该头信息
-        if(null !=authorizationHeader){
+        if(null !=authorizationHeader2){
             //补充：可以判断请求uri
             String requestURI = request.getRequestURI();
             //打印网关的转发的uri：/qa/problem
             System.out.println("------------"+requestURI);
-            //如果有，则转发头信息
-            requestContext.addZuulRequestHeader("JwtAuthorization",authorizationHeader);
+            if (requestURI.startsWith("/qa/")){
+                //如果有，则转发头信息
+                requestContext.addZuulRequestHeader("JwtAuthorization",authorizationHeader2);
+            }
         }
         return null;
     }

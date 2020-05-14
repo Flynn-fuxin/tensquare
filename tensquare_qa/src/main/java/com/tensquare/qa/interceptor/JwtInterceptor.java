@@ -23,13 +23,12 @@ public class JwtInterceptor implements HandlerInterceptor {
         begin = System.currentTimeMillis();
         System.out.println("经过了JwtInterceptor拦截器...");
         String jwtAuthorization = request.getHeader("JwtAuthorization");
-
         final String authorizationHeader2 = request.getHeader("Authorization");
         System.out.println("------------------------");
         System.out.println("JwtAuthorization："+jwtAuthorization);
         System.out.println("Authorization："+authorizationHeader2);
         //判断authorizationHeader不为空,并且是"Bearer "开头的
-        if (null != jwtAuthorization || jwtAuthorization.startsWith("Bearer ")){
+        if (null != jwtAuthorization && jwtAuthorization.startsWith("Bearer ")){
             String token = jwtAuthorization.substring(7);
             Claims claims=null;
             try {
