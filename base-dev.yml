@@ -5,6 +5,9 @@ spring:
   application:
     #指定服务名
     name: tensquare-base
+  #MQ配置
+  rabbitmq:
+    host: 192.168.40.128
   #数据源配置
   datasource:
     #    driver-class-name: com.mysql.jdbc.Driver
